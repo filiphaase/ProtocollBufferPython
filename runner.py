@@ -1,6 +1,8 @@
 #!/usr/bin/env python
  
 import socket
+import google.protobuf.internal.decoder as decoder
+import keyValue_pb2
  
 HOST = "localhost"
 INPORT = 8080
@@ -8,25 +10,34 @@ INPORT = 8080
 inSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 inSock.connect((HOST, INPORT))
 inSock.sendall("hello")
+
+READING_BYTES = 10;
 #outSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #outSock.connect((HOST, OUTPORT))
  
 print "Python subprogram started"
 
 while True:
-    data = inSock.recv(4)
-    print "1 got size: '" + data + "'" 
     
-    bit_string = 1
-    for i in xrange(1,32):
-        print str(data & bit_string)
-        bit_string >> 1 
-        
-    if data == -1:
-        break
+    buf = inSock.recv(READING_BYTES)
+    (size, position) = decoder._DecodeVarint(buf, 0)
     
-    data = sock.recv(data)
-    print "2 got data: " + data
-    kv = KeyValue_pb2.KeyValue();
+    print '\n' + "size: "+str(size)+" position: "+str(position) + '\n'
+    
+    if size == 4294967295: # this is a hack my friend we probably need fixlength types for the length
+		break;
+    
+    toRead = size+position-READING_BYTES;
+    print toRead
+    buf += inSock.recv(toRead) # this is probably inefficient because the buffer sizes changes all the time
+    print("bufSize "+str(len(buf)))
+    kv = keyValue_pb2.KeyValuePair();
     kv.ParseFromString(buf[position:position+size])
-    buf = sock.recv(data)
+    print("key "+kv.key)
+    print("value "+kv.value)
+    
+    #outBuf = kv.SerializeToString();
+    #encoder._EncodeVarint(inSock, len(outBuf))
+    #inSock.write(outBuf);
+    
+print "Got -1, Finishing python process"

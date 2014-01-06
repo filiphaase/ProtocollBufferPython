@@ -1,6 +1,7 @@
 package socketPrototype;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ServerSocket;
@@ -21,7 +22,20 @@ public class Runner {
 		KeyValuePair.Builder kvpb = KeyValuePair.newBuilder();
 		Random r = new Random();
 
-		kvpb.setKey("k-" + r.nextInt(1000000000));
+		kvpb.setKey("k-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			+ "-" + ((Integer)r.nextInt(1000000000)).toString()
+			);
 		kvpb.setValue("v-" + r.nextInt(1000000000));
 		
 		return kvpb.build();
@@ -31,7 +45,7 @@ public class Runner {
 	public static void main(String args[]) throws Exception{
 		
 		String[] env =  {"PYTHONPATH=src/python"};
-		Process p = Runtime.getRuntime().exec("python runner.py");
+		Process p = Runtime.getRuntime().exec("python runner.py", env);
 		BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 		BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
         
@@ -42,22 +56,30 @@ public class Runner {
 
         OutputStream out = socket.getOutputStream();
 	    final CodedOutputStream cout = CodedOutputStream.newInstance(out);
+	    InputStream in = socket.getInputStream();
 	            
         System.out.println("Setting up");
-        for(int i=0; i < 1; i++){
+        for(int i=0; i < 2; i++){
         	// For each kvp write the size as int and then the kvp
 	        KeyValuePair kvp = generateKeyValue();
 	        int size = kvp.getSerializedSize();
-	        cout.writeInt32NoTag(size);
-	        //cout.flush();
+			/* 
+			 * Maximum size of a key value pair should be:
+			 * 2^64, because the Varint which is used to send the size, can't take more
+			 * See: https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.io.coded_stream?hl=en-US&csw=1
+			 */
 	        System.out.println("Wrote size: " + size);    	
-	        kvp.writeTo(cout);
+	        kvp.writeDelimitedTo(out);
+	        out.flush();
 	        System.out.println("Wrote kvp: (" + kvp.getKey() + ":" + kvp.getValue() + ")");
+	        
+	        /*KeyValuePair kvpNew = KeyValuePair.parseDelimitedFrom(in);
+	        System.out.println("Got kvp: (" + kvpNew.getKey() + ":" + kvpNew.getValue() + ")");*/
 	    }
-	    System.out.println("Cleaning up CThread");
-        cout.writeRawLittleEndian32(-1);
+	    System.out.println("Cleaning up");
+        cout.writeRawVarint32(-1);
         cout.flush();
-            	
+  	
         // Some Printing
         String line;
         while ((line = input.readLine()) != null) {
