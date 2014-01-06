@@ -8,18 +8,13 @@ import keyValue_pb2
 HOST = "localhost"
 INPORT = 8080
  
+# TODO: Look if AF_INET could be AF_LOCAL and be quicker....
 inSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 inSock.connect((HOST, INPORT))
-inSock.sendall("hello")
 
 READING_BYTES = 10;
-#outSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#outSock.connect((HOST, OUTPORT))
  
 print "Python subprogram started"
-
-encoder._EncodeVarint(inSock.send, 20)
-
 while True:
     
     buf = inSock.recv(READING_BYTES)
@@ -30,6 +25,7 @@ while True:
     if size == 4294967295: # this is a hack my friend we probably need fixlength types for the length
 		break;
     
+    # 1) Reading the keyValue pair from the socket
     toRead = size+position-READING_BYTES;
     buf += inSock.recv(toRead) # this is probably inefficient because the buffer sizes changes all the time
     print("bufSize "+str(len(buf)))
@@ -38,9 +34,11 @@ while True:
     print("key "+kv.key)
     print("value "+kv.value)
     
+    # 2) Reading the keyValue pair from the socket
     outBuf = kv.SerializeToString();
     print "Sending back to java- outbuf-len: " + str(len(outBuf))
-    encoder._EncodeVarint(inSock.send, 50)
-    #inSock.write(outBuf);
+    buf = encoder._VarintBytes(len(outBuf))
+    inSock.send(buf)
+    inSock.send(outBuf)
     
 print "Got -1, Finishing python process"
