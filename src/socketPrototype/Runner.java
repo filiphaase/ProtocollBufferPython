@@ -57,29 +57,42 @@ public class Runner {
         OutputStream out = socket.getOutputStream();
 	    final CodedOutputStream cout = CodedOutputStream.newInstance(out);
 	    InputStream in = socket.getInputStream();
+	    final CodedInputStream cin = CodedInputStream.newInstance(in);
 	            
         System.out.println("Setting up");
+        
+     	int size = cin.readRawLittleEndian32();
+    	System.out.println("Got size: " + size);
+   
         for(int i=0; i < 2; i++){
+    		try{
         	// For each kvp write the size as int and then the kvp
 	        KeyValuePair kvp = generateKeyValue();
-	        int size = kvp.getSerializedSize();
+	        size = kvp.getSerializedSize();
 			/* 
 			 * Maximum size of a key value pair should be:
 			 * 2^64, because the Varint which is used to send the size, can't take more
 			 * See: https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.io.coded_stream?hl=en-US&csw=1
 			 */
-	        System.out.println("Wrote size: " + size);    	
-	        kvp.writeDelimitedTo(out);
-	        out.flush();
-	        System.out.println("Wrote kvp: (" + kvp.getKey() + ":" + kvp.getValue() + ")");
+	        	System.out.println("Wrote size: " + size);    	
+	        	kvp.writeDelimitedTo(out);
+	        	out.flush();
+	        	System.out.println("Wrote kvp: (" + kvp.getKey() + ":" + kvp.getValue() + ")");
 	        
-	        /*KeyValuePair kvpNew = KeyValuePair.parseDelimitedFrom(in);
-	        System.out.println("Got kvp: (" + kvpNew.getKey() + ":" + kvpNew.getValue() + ")");*/
+	        	size = cin.readRawVarint32();
+	        	System.out.println("Got size: " + size);
+	        
+	        	/*KeyValuePair kvpNew = KeyValuePair.parseFrom(cin);
+	        	System.out.println("Got kvp: (" + kvpNew.getKey() + ":" + kvpNew.getValue() + ")");*/
+    		}catch( Exception e){
+    			e.printStackTrace();
+    		}
 	    }
 	    System.out.println("Cleaning up");
         cout.writeRawVarint32(-1);
         cout.flush();
-  	
+        
+		
         // Some Printing
         String line;
         while ((line = input.readLine()) != null) {

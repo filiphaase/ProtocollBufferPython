@@ -2,6 +2,7 @@
  
 import socket
 import google.protobuf.internal.decoder as decoder
+import google.protobuf.internal.encoder as encoder
 import keyValue_pb2
  
 HOST = "localhost"
@@ -17,6 +18,8 @@ READING_BYTES = 10;
  
 print "Python subprogram started"
 
+encoder._EncodeVarint(inSock.send, 20)
+
 while True:
     
     buf = inSock.recv(READING_BYTES)
@@ -28,7 +31,6 @@ while True:
 		break;
     
     toRead = size+position-READING_BYTES;
-    print toRead
     buf += inSock.recv(toRead) # this is probably inefficient because the buffer sizes changes all the time
     print("bufSize "+str(len(buf)))
     kv = keyValue_pb2.KeyValuePair();
@@ -36,8 +38,9 @@ while True:
     print("key "+kv.key)
     print("value "+kv.value)
     
-    #outBuf = kv.SerializeToString();
-    #encoder._EncodeVarint(inSock, len(outBuf))
+    outBuf = kv.SerializeToString();
+    print "Sending back to java- outbuf-len: " + str(len(outBuf))
+    encoder._EncodeVarint(inSock.send, 50)
     #inSock.write(outBuf);
     
 print "Got -1, Finishing python process"
