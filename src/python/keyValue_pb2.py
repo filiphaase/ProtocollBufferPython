@@ -13,7 +13,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='keyValue.proto',
   package='protos',
-  serialized_pb='\n\x0ekeyValue.proto\x12\x06protos\"*\n\x0cKeyValuePair\x12\x0b\n\x03key\x18\x01 \x02(\t\x12\r\n\x05value\x18\x02 \x02(\tB\x18\n\x06protosB\x0eKeyValueProtos')
+  serialized_pb='\n\x0ekeyValue.proto\x12\x06protos\"*\n\x0cKeyValuePair\x12\x0b\n\x03key\x18\x01 \x02(\t\x12\r\n\x05value\x18\x02 \x02(\t\"6\n\x0eKeyValueStream\x12$\n\x06record\x18\x01 \x03(\x0b\x32\x14.protos.KeyValuePairB\x18\n\x06protosB\x0eKeyValueProtos')
 
 
 
@@ -52,13 +52,49 @@ _KEYVALUEPAIR = _descriptor.Descriptor(
   serialized_end=68,
 )
 
+
+_KEYVALUESTREAM = _descriptor.Descriptor(
+  name='KeyValueStream',
+  full_name='protos.KeyValueStream',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='record', full_name='protos.KeyValueStream.record', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=70,
+  serialized_end=124,
+)
+
+_KEYVALUESTREAM.fields_by_name['record'].message_type = _KEYVALUEPAIR
 DESCRIPTOR.message_types_by_name['KeyValuePair'] = _KEYVALUEPAIR
+DESCRIPTOR.message_types_by_name['KeyValueStream'] = _KEYVALUESTREAM
 
 class KeyValuePair(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _KEYVALUEPAIR
 
   # @@protoc_insertion_point(class_scope:protos.KeyValuePair)
+
+class KeyValueStream(_message.Message):
+  __metaclass__ = _reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _KEYVALUESTREAM
+
+  # @@protoc_insertion_point(class_scope:protos.KeyValueStream)
 
 
 DESCRIPTOR.has_options = True

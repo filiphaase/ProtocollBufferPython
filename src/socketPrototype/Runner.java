@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.Random;
 
 import protos.KeyValueProtos.KeyValuePair;
+import protos.KeyValueProtos.KeyValueStream;
 
 import com.google.protobuf.CodedInputStream;
 import com.google.protobuf.CodedOutputStream;
@@ -17,9 +18,9 @@ import com.google.protobuf.CodedOutputStream;
  * 	1) Multiple Map outputs
  * 	2) Simple WordCount-Mapper-Job
  *  3) Simple WordCount-Reducer-Job
- *  4) Thread Reevaluation
- *  5) Erste Stratosphere Integration - Test
+ *  4) Erste Stratosphere Integration - Test
  *  
+ *  5) Thread Reevaluation
  *  6) PACT-RECORD Abbildung in Protocol buffers
  *  7) "Python Interface Design"
  *  8) PACT-Operators schreiben
@@ -29,6 +30,12 @@ public class Runner {
 	
 	public static final int PORT = 8080;
 	
+	private static void printKeyValueStream(KeyValueStream kvs){
+		for(int i = 0; i < kvs.getRecordCount(); i++){
+			KeyValuePair kvp = kvs.getRecord(i);
+			System.out.println("Got kvp " + i + ": (" + kvp.getKey() + ":" + kvp.getValue() + ")");
+		}
+	}
 	private static KeyValuePair generateKeyValue() {
 		KeyValuePair.Builder kvpb = KeyValuePair.newBuilder();
 		Random r = new Random();
@@ -88,8 +95,8 @@ public class Runner {
 	        	out.flush();
 	        	System.out.println("Wrote kvp: (" + kvp.getKey() + ":" + kvp.getValue() + ")");
 	        
-	        	KeyValuePair kvpNew = KeyValuePair.parseDelimitedFrom(in);
-	        	System.out.println("Got kvp: (" + kvpNew.getKey() + ":" + kvpNew.getValue() + ")");
+	        	KeyValueStream kvs = KeyValueStream.parseDelimitedFrom(in);
+	        	printKeyValueStream(kvs);
 	        	
     		}catch( Exception e){
     			e.printStackTrace();

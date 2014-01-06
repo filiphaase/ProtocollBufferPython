@@ -651,11 +651,702 @@ public final class KeyValueProtos {
     // @@protoc_insertion_point(class_scope:protos.KeyValuePair)
   }
 
+  public interface KeyValueStreamOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // repeated .protos.KeyValuePair record = 1;
+    /**
+     * <code>repeated .protos.KeyValuePair record = 1;</code>
+     */
+    java.util.List<protos.KeyValueProtos.KeyValuePair> 
+        getRecordList();
+    /**
+     * <code>repeated .protos.KeyValuePair record = 1;</code>
+     */
+    protos.KeyValueProtos.KeyValuePair getRecord(int index);
+    /**
+     * <code>repeated .protos.KeyValuePair record = 1;</code>
+     */
+    int getRecordCount();
+    /**
+     * <code>repeated .protos.KeyValuePair record = 1;</code>
+     */
+    java.util.List<? extends protos.KeyValueProtos.KeyValuePairOrBuilder> 
+        getRecordOrBuilderList();
+    /**
+     * <code>repeated .protos.KeyValuePair record = 1;</code>
+     */
+    protos.KeyValueProtos.KeyValuePairOrBuilder getRecordOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code protos.KeyValueStream}
+   */
+  public static final class KeyValueStream extends
+      com.google.protobuf.GeneratedMessage
+      implements KeyValueStreamOrBuilder {
+    // Use KeyValueStream.newBuilder() to construct.
+    private KeyValueStream(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private KeyValueStream(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final KeyValueStream defaultInstance;
+    public static KeyValueStream getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public KeyValueStream getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private KeyValueStream(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                record_ = new java.util.ArrayList<protos.KeyValueProtos.KeyValuePair>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              record_.add(input.readMessage(protos.KeyValueProtos.KeyValuePair.PARSER, extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          record_ = java.util.Collections.unmodifiableList(record_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return protos.KeyValueProtos.internal_static_protos_KeyValueStream_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return protos.KeyValueProtos.internal_static_protos_KeyValueStream_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              protos.KeyValueProtos.KeyValueStream.class, protos.KeyValueProtos.KeyValueStream.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<KeyValueStream> PARSER =
+        new com.google.protobuf.AbstractParser<KeyValueStream>() {
+      public KeyValueStream parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new KeyValueStream(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<KeyValueStream> getParserForType() {
+      return PARSER;
+    }
+
+    // repeated .protos.KeyValuePair record = 1;
+    public static final int RECORD_FIELD_NUMBER = 1;
+    private java.util.List<protos.KeyValueProtos.KeyValuePair> record_;
+    /**
+     * <code>repeated .protos.KeyValuePair record = 1;</code>
+     */
+    public java.util.List<protos.KeyValueProtos.KeyValuePair> getRecordList() {
+      return record_;
+    }
+    /**
+     * <code>repeated .protos.KeyValuePair record = 1;</code>
+     */
+    public java.util.List<? extends protos.KeyValueProtos.KeyValuePairOrBuilder> 
+        getRecordOrBuilderList() {
+      return record_;
+    }
+    /**
+     * <code>repeated .protos.KeyValuePair record = 1;</code>
+     */
+    public int getRecordCount() {
+      return record_.size();
+    }
+    /**
+     * <code>repeated .protos.KeyValuePair record = 1;</code>
+     */
+    public protos.KeyValueProtos.KeyValuePair getRecord(int index) {
+      return record_.get(index);
+    }
+    /**
+     * <code>repeated .protos.KeyValuePair record = 1;</code>
+     */
+    public protos.KeyValueProtos.KeyValuePairOrBuilder getRecordOrBuilder(
+        int index) {
+      return record_.get(index);
+    }
+
+    private void initFields() {
+      record_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      for (int i = 0; i < getRecordCount(); i++) {
+        if (!getRecord(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < record_.size(); i++) {
+        output.writeMessage(1, record_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < record_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, record_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static protos.KeyValueProtos.KeyValueStream parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static protos.KeyValueProtos.KeyValueStream parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static protos.KeyValueProtos.KeyValueStream parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static protos.KeyValueProtos.KeyValueStream parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static protos.KeyValueProtos.KeyValueStream parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static protos.KeyValueProtos.KeyValueStream parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static protos.KeyValueProtos.KeyValueStream parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static protos.KeyValueProtos.KeyValueStream parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static protos.KeyValueProtos.KeyValueStream parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static protos.KeyValueProtos.KeyValueStream parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(protos.KeyValueProtos.KeyValueStream prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code protos.KeyValueStream}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements protos.KeyValueProtos.KeyValueStreamOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return protos.KeyValueProtos.internal_static_protos_KeyValueStream_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return protos.KeyValueProtos.internal_static_protos_KeyValueStream_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                protos.KeyValueProtos.KeyValueStream.class, protos.KeyValueProtos.KeyValueStream.Builder.class);
+      }
+
+      // Construct using protos.KeyValueProtos.KeyValueStream.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getRecordFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        if (recordBuilder_ == null) {
+          record_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          recordBuilder_.clear();
+        }
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return protos.KeyValueProtos.internal_static_protos_KeyValueStream_descriptor;
+      }
+
+      public protos.KeyValueProtos.KeyValueStream getDefaultInstanceForType() {
+        return protos.KeyValueProtos.KeyValueStream.getDefaultInstance();
+      }
+
+      public protos.KeyValueProtos.KeyValueStream build() {
+        protos.KeyValueProtos.KeyValueStream result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public protos.KeyValueProtos.KeyValueStream buildPartial() {
+        protos.KeyValueProtos.KeyValueStream result = new protos.KeyValueProtos.KeyValueStream(this);
+        int from_bitField0_ = bitField0_;
+        if (recordBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            record_ = java.util.Collections.unmodifiableList(record_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.record_ = record_;
+        } else {
+          result.record_ = recordBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof protos.KeyValueProtos.KeyValueStream) {
+          return mergeFrom((protos.KeyValueProtos.KeyValueStream)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(protos.KeyValueProtos.KeyValueStream other) {
+        if (other == protos.KeyValueProtos.KeyValueStream.getDefaultInstance()) return this;
+        if (recordBuilder_ == null) {
+          if (!other.record_.isEmpty()) {
+            if (record_.isEmpty()) {
+              record_ = other.record_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureRecordIsMutable();
+              record_.addAll(other.record_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.record_.isEmpty()) {
+            if (recordBuilder_.isEmpty()) {
+              recordBuilder_.dispose();
+              recordBuilder_ = null;
+              record_ = other.record_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              recordBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getRecordFieldBuilder() : null;
+            } else {
+              recordBuilder_.addAllMessages(other.record_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        for (int i = 0; i < getRecordCount(); i++) {
+          if (!getRecord(i).isInitialized()) {
+            
+            return false;
+          }
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        protos.KeyValueProtos.KeyValueStream parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (protos.KeyValueProtos.KeyValueStream) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // repeated .protos.KeyValuePair record = 1;
+      private java.util.List<protos.KeyValueProtos.KeyValuePair> record_ =
+        java.util.Collections.emptyList();
+      private void ensureRecordIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          record_ = new java.util.ArrayList<protos.KeyValueProtos.KeyValuePair>(record_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          protos.KeyValueProtos.KeyValuePair, protos.KeyValueProtos.KeyValuePair.Builder, protos.KeyValueProtos.KeyValuePairOrBuilder> recordBuilder_;
+
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public java.util.List<protos.KeyValueProtos.KeyValuePair> getRecordList() {
+        if (recordBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(record_);
+        } else {
+          return recordBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public int getRecordCount() {
+        if (recordBuilder_ == null) {
+          return record_.size();
+        } else {
+          return recordBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public protos.KeyValueProtos.KeyValuePair getRecord(int index) {
+        if (recordBuilder_ == null) {
+          return record_.get(index);
+        } else {
+          return recordBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public Builder setRecord(
+          int index, protos.KeyValueProtos.KeyValuePair value) {
+        if (recordBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRecordIsMutable();
+          record_.set(index, value);
+          onChanged();
+        } else {
+          recordBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public Builder setRecord(
+          int index, protos.KeyValueProtos.KeyValuePair.Builder builderForValue) {
+        if (recordBuilder_ == null) {
+          ensureRecordIsMutable();
+          record_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          recordBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public Builder addRecord(protos.KeyValueProtos.KeyValuePair value) {
+        if (recordBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRecordIsMutable();
+          record_.add(value);
+          onChanged();
+        } else {
+          recordBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public Builder addRecord(
+          int index, protos.KeyValueProtos.KeyValuePair value) {
+        if (recordBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRecordIsMutable();
+          record_.add(index, value);
+          onChanged();
+        } else {
+          recordBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public Builder addRecord(
+          protos.KeyValueProtos.KeyValuePair.Builder builderForValue) {
+        if (recordBuilder_ == null) {
+          ensureRecordIsMutable();
+          record_.add(builderForValue.build());
+          onChanged();
+        } else {
+          recordBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public Builder addRecord(
+          int index, protos.KeyValueProtos.KeyValuePair.Builder builderForValue) {
+        if (recordBuilder_ == null) {
+          ensureRecordIsMutable();
+          record_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          recordBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public Builder addAllRecord(
+          java.lang.Iterable<? extends protos.KeyValueProtos.KeyValuePair> values) {
+        if (recordBuilder_ == null) {
+          ensureRecordIsMutable();
+          super.addAll(values, record_);
+          onChanged();
+        } else {
+          recordBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public Builder clearRecord() {
+        if (recordBuilder_ == null) {
+          record_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          recordBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public Builder removeRecord(int index) {
+        if (recordBuilder_ == null) {
+          ensureRecordIsMutable();
+          record_.remove(index);
+          onChanged();
+        } else {
+          recordBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public protos.KeyValueProtos.KeyValuePair.Builder getRecordBuilder(
+          int index) {
+        return getRecordFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public protos.KeyValueProtos.KeyValuePairOrBuilder getRecordOrBuilder(
+          int index) {
+        if (recordBuilder_ == null) {
+          return record_.get(index);  } else {
+          return recordBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public java.util.List<? extends protos.KeyValueProtos.KeyValuePairOrBuilder> 
+           getRecordOrBuilderList() {
+        if (recordBuilder_ != null) {
+          return recordBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(record_);
+        }
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public protos.KeyValueProtos.KeyValuePair.Builder addRecordBuilder() {
+        return getRecordFieldBuilder().addBuilder(
+            protos.KeyValueProtos.KeyValuePair.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public protos.KeyValueProtos.KeyValuePair.Builder addRecordBuilder(
+          int index) {
+        return getRecordFieldBuilder().addBuilder(
+            index, protos.KeyValueProtos.KeyValuePair.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .protos.KeyValuePair record = 1;</code>
+       */
+      public java.util.List<protos.KeyValueProtos.KeyValuePair.Builder> 
+           getRecordBuilderList() {
+        return getRecordFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          protos.KeyValueProtos.KeyValuePair, protos.KeyValueProtos.KeyValuePair.Builder, protos.KeyValueProtos.KeyValuePairOrBuilder> 
+          getRecordFieldBuilder() {
+        if (recordBuilder_ == null) {
+          recordBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              protos.KeyValueProtos.KeyValuePair, protos.KeyValueProtos.KeyValuePair.Builder, protos.KeyValueProtos.KeyValuePairOrBuilder>(
+                  record_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          record_ = null;
+        }
+        return recordBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:protos.KeyValueStream)
+    }
+
+    static {
+      defaultInstance = new KeyValueStream(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:protos.KeyValueStream)
+  }
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_protos_KeyValuePair_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_protos_KeyValuePair_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_protos_KeyValueStream_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_protos_KeyValueStream_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -666,8 +1357,9 @@ public final class KeyValueProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\016keyValue.proto\022\006protos\"*\n\014KeyValuePair" +
-      "\022\013\n\003key\030\001 \002(\t\022\r\n\005value\030\002 \002(\tB\030\n\006protosB\016" +
-      "KeyValueProtos"
+      "\022\013\n\003key\030\001 \002(\t\022\r\n\005value\030\002 \002(\t\"6\n\016KeyValue" +
+      "Stream\022$\n\006record\030\001 \003(\0132\024.protos.KeyValue" +
+      "PairB\030\n\006protosB\016KeyValueProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -680,6 +1372,12 @@ public final class KeyValueProtos {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_protos_KeyValuePair_descriptor,
               new java.lang.String[] { "Key", "Value", });
+          internal_static_protos_KeyValueStream_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_protos_KeyValueStream_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_protos_KeyValueStream_descriptor,
+              new java.lang.String[] { "Record", });
           return null;
         }
       };
